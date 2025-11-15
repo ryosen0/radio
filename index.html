@@ -224,7 +224,6 @@
       margin-left: 8px;
     }
 
-    /* Пиксельные звезды */
     .pixel-stars {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -305,7 +304,24 @@
       <div class="player-container">
         <h2 class="player-title">netonoe fm</h2>
         <div class="player-wrapper">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/Hvm_gtSnA0o?si=ipsPAL6JPjOv8vp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/Hvm_gtSnA0o?si=ipsPAL6JPjOv8vp4"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <h2 class="player-title" style="margin-top: 32px;">Twitch Stream</h2>
+        <div class="player-wrapper">
+          <iframe
+            src="https://player.twitch.tv/?channel=netonoe3&parent=ryosen0.github.io"
+            frameborder="0"
+            allowfullscreen
+            scrolling="no"
+          ></iframe>
         </div>
       </div>
       
@@ -327,12 +343,10 @@
       </footer>
     </div>
     
-    <!-- Пиксельные звезды для анимации -->
     <div class="pixel-stars"></div>
   </div>
 
   <script>
-    // Professional background animation
     const PARTICLE_COUNT = 45;
     const CONNECTION_DISTANCE = 180;
     const PARTICLE_COLORS = ['#6be0ff22', '#ffb4e622', '#ffe06622'];
@@ -372,11 +386,9 @@
       }
 
       update() {
-        // Smooth movement
         this.x += this.vx;
         this.y += this.vy;
 
-        // Boundary check with smooth transition
         if (this.x < 0 || this.x > canvas.width) {
           this.vx *= -1;
         }
@@ -384,7 +396,6 @@
           this.vy *= -1;
         }
 
-        // Mouse interaction
         if (isMouseMoving) {
           const dx = mousePosition.x - this.x;
           const dy = mousePosition.y - this.y;
@@ -394,7 +405,6 @@
             const force = (CONNECTION_DISTANCE - distance) / CONNECTION_DISTANCE;
             this.targetSize = BASE_SIZE + 3 * force;
             
-            // Gentle repulsion
             const angle = Math.atan2(dy, dx);
             this.vx -= Math.cos(angle) * force * 0.02;
             this.vy -= Math.sin(angle) * force * 0.02;
@@ -403,10 +413,8 @@
           }
         }
 
-        // Smooth size transition
         this.size += (this.targetSize - this.size) * 0.1;
 
-        // Speed limit
         const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
         if (speed > 1.5) {
           this.vx = (this.vx / speed) * 1.5;
